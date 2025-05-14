@@ -1,1 +1,14 @@
-<app-camera></app-camera>
+<app-camera (image)="getPredictions($event)"></app-camera> <!-- Appeler la fonction getPredictions lors de la capture d'une image -->
+    @if (isLoading){ <!-- Afficher le spinner de chargement si les prédictions sont en cours --> 
+    <span class="loading loading-spinner text-primary loading-lg"></span>
+    } @else if (predictions.length > 0){ <!-- Afficher les prédictions si elles existent -->
+    <div>
+        <h3>Predictions</h3>
+        <ul>
+        @for (prediction of predictions; track prediction){ <!-- Parcourir les prédictions -->
+            <!-- Afficher les informations de la prédiction -->
+            <li>{{prediction.pokedex_number}} - {{ prediction.pokemon_name }}: {{ prediction.probability | percent:'1.2-2' }}</li>
+        }
+        </ul>
+    </div>
+    }

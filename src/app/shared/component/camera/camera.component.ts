@@ -14,6 +14,8 @@ import {CameraPreview} from "@capacitor-community/camera-preview";
 export class CameraComponent implements OnInit {
 
   cameraPermission: boolean = false;
+  
+  @Output() image: EventEmitter<File> = new EventEmitter<File>();
 
   ngOnInit(): void {
     this.checkPermissions().then(() => {
@@ -46,9 +48,7 @@ export class CameraComponent implements OnInit {
     }
   }
 
-  //---------------------- Envoie de l'image capturée au composant parent ----------------------
-  @Output() image: EventEmitter<File> = new EventEmitter<File>();
-
+  //---------------------- Envoie de l'image capturée au composant parent ----------------------  
   // Prendre et traiter une photo
   async takePicture() {
     // Prendre une photo
